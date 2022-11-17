@@ -1,13 +1,11 @@
-package search
+package storage
 
 import (
 	"fmt"
 	"log"
 	"os/exec"
-	"strings"
 
-	"zut/internal/commands"
-	"zut/internal/commands/file"
+	"zut/internal/commands/storage"
 	"zut/pkg/utils"
 
 	"github.com/spf13/cobra"
@@ -15,9 +13,7 @@ import (
 
 // Run is a convenient function for Cobra.
 func Run(cmd *cobra.Command, args []string) {
-	cmds := searchCommands(args)
-
-	for _, c := range cmds {
+	for _, c := range storage.Commands {
 		fmt.Println(c.Name, "-", c.Description)
 		if utils.CommandExists(c.Name) {
 			fmt.Println("Command is installed")
@@ -34,19 +30,4 @@ func Run(cmd *cobra.Command, args []string) {
 			}
 		}
 	}
-}
-
-func searchCommands(args []string) []*commands.Command {
-	var commands []*commands.Command
-
-	for _, fileCommand := range file.Commands {
-		for _, arg := range args {
-			if strings.Contains(fileCommand.Description, arg) {
-				commands = append(commands, fileCommand)
-				break
-			}
-		}
-	}
-
-	return commands
 }

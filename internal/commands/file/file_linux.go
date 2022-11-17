@@ -15,5 +15,10 @@ var Commands []*commands.Command = []*commands.Command{
 		Name:        "rsync",
 		Description: "a fast, versatile, remote (and local) file-copying tool",
 		Tags:        []string{"copy"},
+		Examples:    []string{"rsync -ah --progress source destination"},
+	},
+	{
+		Name:        "pwd",
+		Description: "print name of current/working directory",
 	},
 }
