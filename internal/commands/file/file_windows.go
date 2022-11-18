@@ -9,12 +9,12 @@ var Commands []*commands.Command = []*commands.Command{
 	{
 		Name:        "copy",
 		Description: "copy files and directories",
-		Tags:        []string{"copy", "files", "directories"},
+		Tags:        []string{},
 		Examples:    []string{"copy source destination"},
 	},
 	{
-		Name:        "cmd.exe",
+		Name:        "dir",
 		Description: "list files and directories",
-		Tags:        []string{"list", "files", "directories"},
+		Tags:        []string{},
 	},
 }

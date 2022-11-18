@@ -10,6 +10,7 @@ import (
 	"zut/internal/commands/file"
 	"zut/pkg/utils"
 
+	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
 
@@ -18,11 +19,16 @@ func Run(cmd *cobra.Command, args []string) {
 	cmds := searchCommands(args)
 
 	for _, c := range cmds {
-		fmt.Println(c.Name, "-", c.Description)
-		if utils.CommandExists(c.Name) {
-			fmt.Println("Command is installed")
+		// Check is command is installed
+		isInstalled := utils.CommandExists(c.Name)
+
+		if isInstalled {
+			green := color.New(color.FgGreen).SprintFunc()
+			fmt.Fprintf(color.Output, "%s - %s (Command is %s)", c.Name, c.Description, green("installed"))
 		} else {
-			fmt.Println("Command is not installed")
+			red := color.New(color.FgRed).SprintFunc()
+			fmt.Fprintf(color.Output, "%s - %s (Command is %s)", c.Name, c.Description, red("not installed"))
+
 			if utils.AskForConfirmation("Do you want to install it ?") {
 				cmd := exec.Command("apt", "install", c.Name)
 				out, err := cmd.Output()
@@ -33,6 +39,8 @@ func Run(cmd *cobra.Command, args []string) {
 				fmt.Print(out)
 			}
 		}
+
+		fmt.Println()
 	}
 }
 
@@ -41,9 +49,18 @@ func searchCommands(args []string) []*commands.Command {
 
 	for _, fileCommand := range file.Commands {
 		for _, arg := range args {
+			// Search in description
 			if strings.Contains(fileCommand.Description, arg) {
 				commands = append(commands, fileCommand)
 				break
+			}
+
+			// Search in tags
+			for _, tag := range fileCommand.Tags {
+				if strings.Contains(tag, arg) {
+					commands = append(commands, fileCommand)
+					break
+				}
 			}
 		}
 	}

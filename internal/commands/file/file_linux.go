@@ -7,9 +7,14 @@ import "zut/internal/commands"
 
 var Commands []*commands.Command = []*commands.Command{
 	{
+		Name:        "ls",
+		Description: "list files and directories",
+		Tags:        []string{},
+	},
+	{
 		Name:        "cp",
 		Description: "copy files and directories",
-		Tags:        []string{"copy", "files", "directories"},
+		Tags:        []string{},
 	},
 	{
 		Name:        "rsync",
