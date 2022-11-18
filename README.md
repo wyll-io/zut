@@ -2,6 +2,8 @@
 
 **Zut** helps you to find the command that you search and how to use it ! Works on *Linux* and *Windows*.
 
+## Why ?
+
 If you ever answered yes to one of this case, *zut* is for you :
 
  - What the hell is that command that displays the disk usage ?
