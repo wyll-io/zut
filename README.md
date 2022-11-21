@@ -10,6 +10,14 @@ If you ever answered yes to one of this case, *zut* is for you :
  - I want to copy something with rsync but I don't remember the syntax
  - What are the options I used to set with netstat ?
 
+## Installation
+
+Dowload a release, extract the executable in `/usr/bin` or `/usr/local/bin`. Then you can :
+
+```
+zut version
+```
+
 ## Usage
 
 ### Search a command

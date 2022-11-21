@@ -18,9 +18,14 @@ import (
 func Run(cmd *cobra.Command, args []string) {
 	cmds := searchCommands(args)
 
+	if len(cmds) == 0 {
+		fmt.Println("no command has been found")
+		return
+	}
+
 	for _, c := range cmds {
-		// Check is command is installed
-		isInstalled := utils.CommandExists(c.Name)
+		// Check if command is installed
+		isInstalled := utils.CommandIsInstalled(c.Name)
 
 		if isInstalled {
 			green := color.New(color.FgGreen).SprintFunc()

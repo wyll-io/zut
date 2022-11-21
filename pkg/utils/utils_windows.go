@@ -3,6 +3,6 @@
 
 package utils
 
-func CommandExists(cmd string) bool {
+func CommandIsInstalled(cmd string) bool {
 	return true
 }

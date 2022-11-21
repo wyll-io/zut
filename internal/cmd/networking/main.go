@@ -15,7 +15,7 @@ import (
 func Run(cmd *cobra.Command, args []string) {
 	for _, c := range networking.Commands {
 		fmt.Println(c.Name, "-", c.Description)
-		if utils.CommandExists(c.Name) {
+		if utils.CommandIsInstalled(c.Name) {
 			fmt.Println("Command is installed")
 		} else {
 			fmt.Println("Command is not installed")

@@ -8,10 +8,10 @@ import (
 	"os/exec"
 )
 
-func CommandExists(cmd string) bool {
+func CommandIsInstalled(cmd string) bool {
 	_, err := exec.LookPath(cmd)
 	if errors.Is(err, exec.ErrDot) {
-		err = nil
+		return true
 	}
 
 	return err == nil

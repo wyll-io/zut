@@ -20,6 +20,7 @@ func init() {
 	rootCmd.AddCommand(networkingCmd)
 	rootCmd.AddCommand(storageCmd)
 	rootCmd.AddCommand(favCmd)
+	rootCmd.AddCommand(versionCmd)
 }
 
 // Execute the root command.
